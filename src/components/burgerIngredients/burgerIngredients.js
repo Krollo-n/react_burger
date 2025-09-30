@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burgerIngredients.module.css';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'; 
+import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import InfoBurgerIngredient from '../infoBurgerIngredient/infoBurgerIngredient';
+import {IngredientType} from '../../utils/types'
 
 class  BurgerIngredients extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ render() {
   return (
     <section>
       <div className={burgerIngredientsStyles.main}>
-        <div style={{display: 'flex'}}>
+        <div className={burgerIngredientsStyles.tabMain}>
           <a key='linkBun' href='#one'>
             <Tab key='tabBun' value="one" active={this.state.current === 'one'} onClick={this.tabClick} href='#one'>
                 Булки
@@ -82,21 +83,7 @@ render() {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape(
-   {
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      image_mobile: PropTypes.string.isRequired,
-      image_large: PropTypes.string.isRequired,
-      __v: PropTypes.number.isRequired
-  })).isRequired
+  data: PropTypes.arrayOf(PropTypes.shape(IngredientType)).isRequired
 }
 
 export default BurgerIngredients;

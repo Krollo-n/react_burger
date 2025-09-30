@@ -27,5 +27,9 @@
   padding: 24px 0 72px 10px;
 }
 
+.tabMain {
+   display: flex
+}
+
 
 

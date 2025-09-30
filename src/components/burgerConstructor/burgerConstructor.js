@@ -5,6 +5,7 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'; 
+import {IngredientType} from '../../utils/types'
 
 class BurgerConstructor extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class BurgerConstructor extends React.Component {
             <div className={burgerConstructorStyles.components}> 
                 {this.props.data.filter(({type}) => type !== 'bun')
                 .map((d) => (
-                    <div key={'burgerConstructor-${d._id}'} className={burgerConstructorStyles.ingredient}>
+                    <div key={`burgerConstructor-${d._id}`} className={burgerConstructorStyles.ingredient}>
                         <DragIcon type={"primary"}/>
                         <ConstructorElement 
                           text={d.name} 
@@ -55,21 +56,7 @@ class BurgerConstructor extends React.Component {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape(
-   {
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      image_mobile: PropTypes.string.isRequired,
-      image_large: PropTypes.string.isRequired,
-      __v: PropTypes.number.isRequired
-  })).isRequired
+  data: PropTypes.arrayOf(PropTypes.shape(IngredientType)).isRequired
 }
 
 export default BurgerConstructor;
