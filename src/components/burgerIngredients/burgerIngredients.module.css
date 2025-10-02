@@ -1,0 +1,35 @@
+.main {
+  max-width: 1240px;
+  padding-bottom: 40px;
+  margin: 0 auto;
+}
+
+.header {
+    font-family: "Jet Brains Mono";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 125%;
+    color: #f2f2f3;
+    margin:0;
+}
+
+.container {
+  height: 670px;
+  margin-top: 40px;
+  overflow-y: scroll;
+} 
+
+.ingredient {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 55px 14px; 
+  padding: 24px 0 72px 10px;
+}
+
+.tabMain {
+   display: flex
+}
+
+
+

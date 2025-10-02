@@ -1,0 +1,42 @@
+.header {
+    background-color: #1C1C21;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 19px 0;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jet Brains Mono";
+    column-gap: 8px;
+    font-weight: 400;
+    font-size: 16px; 
+    line-height: 114%;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.buttonFirst {
+    composes: button;
+    color: #F2F2F3;
+    margin-right: 28px;
+}
+
+.buttonSecond {
+    composes: button;
+    color: #8585AD;
+}
+
+.logo {
+    margin: 0 auto
+}
