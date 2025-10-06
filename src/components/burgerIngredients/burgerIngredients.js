@@ -95,9 +95,12 @@ function BurgerIngredients({data}) {
       </div>
     </section>
    
-    <Modal id="ingredientDetails" isOpen={isOpen} onClose={handleClose}>
-        <IngredientDetails data={selectedIngredient} />
-    </Modal>
+    {
+      isOpen &&
+      <Modal id="ingredientDetails" isOpen={isOpen} onClose={handleClose}>
+          <IngredientDetails data={selectedIngredient} />
+      </Modal>
+    }
   </> 
   );
 }
