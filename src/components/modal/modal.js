@@ -19,7 +19,7 @@ function Modal({children, id, isOpen, onClose}) {
     document.addEventListener('keydown', close);
     return () => {
       document.removeEventListener('click',  close);
-      document.addEventListener('keydown', close);
+      document.removeEventListener('keydown', close);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
