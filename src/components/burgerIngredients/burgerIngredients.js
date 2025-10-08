@@ -1,42 +1,55 @@
-import React from 'react';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burgerIngredients.module.css';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import InfoBurgerIngredient from '../infoBurgerIngredient/infoBurgerIngredient';
 import {IngredientType} from '../../utils/types'
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredientDetails/ingredientDetails';
 
-class  BurgerIngredients extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      current:'one'
-    };
+function BurgerIngredients({data}) {
+  const [current, setCurrent] = useState('one');
+  const [selectedIngredient, setSelectedIngredient] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.tabClick = this.tabClick.bind(this);
-  } 
-  tabClick(e) {
-    this.setState({
-      current: e
-    });
-  }
+  const handleOpen = useCallback(
+    (e, id) => { 
+      if (e.type === 'click') {
+        setSelectedIngredient(data.find((ingredient) => ingredient._id === id));
+        setIsOpen(true);
+      }
+    },
+    [data]
+  );
 
-render() {
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    if (isOpen) return;
+    setSelectedIngredient({});
+  }, [isOpen]);
+
   return (
+  <>
     <section>
       <div className={burgerIngredientsStyles.main}>
         <div className={burgerIngredientsStyles.tabMain}>
           <a key='linkBun' href='#one'>
-            <Tab key='tabBun' value="one" active={this.state.current === 'one'} onClick={this.tabClick} href='#one'>
+            <Tab key='tabBun' value="one" active={current === 'one'} onClick={setCurrent} href='#one'>
                 Булки
             </Tab>
           </a>
           <a key='linkSauce' href='#two'>
-            <Tab key='tabSauce' value="two" active={this.state.current === 'two'} onClick={this.tabClick}>
+            <Tab key='tabSauce' value="two" active={current === 'two'} onClick={setCurrent}>
                 Соусы
             </Tab>
           </a>
           <a key='linkMain' href='#three'>
-            <Tab key='tabMain' value="three" active={this.state.current === 'three'} onClick={this.tabClick}>
+            <Tab key='tabMain' value="three" active={current === 'three'} onClick={setCurrent}>
                 Начинки
             </Tab>
           </a>
@@ -48,8 +61,9 @@ render() {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                this.props.data.filter(({type}) => type==='bun')
-                .map((d) => (<InfoBurgerIngredient  key={d._id} name={d.name} price={d.price} image={d.image}/>))
+                data.filter(({type}) => type==='bun')
+                .map((d) => (<InfoBurgerIngredient _id={d._id} key={d._id} name={d.name} price={d.price} image={d.image}
+                                                    onOpen={handleOpen}/>))
               }
             </div>
           </section>
@@ -59,8 +73,9 @@ render() {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                this.props.data.filter(({type}) => type==='sauce')
-                .map((d) => (<InfoBurgerIngredient  key={d._id} name={d.name} price={d.price} image={d.image}/>))
+                data.filter(({type}) => type==='sauce')
+                .map((d) => (<InfoBurgerIngredient _id={d._id} key={d._id} name={d.name} price={d.price} image={d.image}
+                                                    onOpen={handleOpen}/>))
               }
             </div>
           </section>
@@ -70,16 +85,24 @@ render() {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                this.props.data.filter(({type}) => type==='main')
-                .map((d) => (<InfoBurgerIngredient  key={d._id} name={d.name} price={d.price} image={d.image}/>))
+                data.filter(({type}) => type==='main')
+                .map((d) => (<InfoBurgerIngredient _id={d._id}  key={d._id} name={d.name} price={d.price} image={d.image}
+                                                    onOpen={handleOpen}/>))
               }
             </div>
           </section>
         </div>
       </div>
     </section>
+   
+    {
+      isOpen &&
+      <Modal id="ingredientDetails" isOpen={isOpen} onClose={handleClose}>
+          <IngredientDetails data={selectedIngredient} />
+      </Modal>
+    }
+  </> 
   );
-}
 }
 
 BurgerIngredients.propTypes = {

@@ -1,0 +1,63 @@
+.main {
+  padding: 54px 40px 60px;
+}
+
+.mainHeader {
+  font-family: "Jet Brains Mono";
+  font-weight: 700;
+  font-size:36px;
+  line-height: 111%;
+  margin:0;
+}
+
+.boxMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.headerIngredient {
+  font-family: "Jet Brains Mono";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 125%;
+  color: #f2f2f3;
+  padding-top: 16px;
+  margin:0;
+}
+
+.image {
+  width: 75%;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  color: #8585ad;
+  padding: 36px 0 0 0;
+  margin:0;
+}
+
+.boxInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Iceland";
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 86%;
+  color: inherit;
+  row-gap: 8px;
+}
+
+.boxHeader {
+  font-family: "Jet Brains Mono";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 114%;
+  color: inherit;
+  margin: 0;
+}
