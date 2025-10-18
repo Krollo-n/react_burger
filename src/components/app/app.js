@@ -1,23 +1,30 @@
 import {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 import appStyles from './app.module.css';
 import AppHeader from '../appHeader/appHeader';
 import BurgerIngredients from '../burgerIngredients/burgerIngredients';
 import BurgerConstructor from '../burgerConstructor/burgerConstructor';
-import {useGetIngredientsQuery} from "../../services/reducers/ingredients"; 
+/* import {useGetIngredientsQuery} from "../../services/reducers/ingredients";  */
+import {getIngredients} from "../../services/reducers/ingredients"; 
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
 function App() {
-  const { data, status, isFetching, isLoading, error } = useGetIngredientsQuery();  
   const [ingredientCounter, setIngredientCounter] = useState(new Map());
+  const dispatch = useDispatch()
+  const {requested} = useSelector(state => state.ingredients)
+  useEffect(() => {
+      dispatch(getIngredients())
+  }, [dispatch])
 
-  if (isLoading ) {
+  if (requested) {
     return <div>Loading data...</div>;
   }  
 
-  if (error) {
+  /*if (error) {
     return <div>Error: {error.message}</div>;
-  }  
+  }  */ 
 
   return (
     <div>
