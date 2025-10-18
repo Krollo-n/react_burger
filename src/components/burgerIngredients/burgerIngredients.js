@@ -1,6 +1,7 @@
-import {useEffect} from 'react';
 import {useState} from 'react';
 import {useCallback} from 'react';
+import {useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burgerIngredients.module.css';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'; 
@@ -8,30 +9,29 @@ import InfoBurgerIngredient from '../infoBurgerIngredient/infoBurgerIngredient';
 import {IngredientType} from '../../utils/types'
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredientDetails/ingredientDetails';
+import {useGetIngredientsQuery} from '../../services/reducers/ingredients';
+import {SHOW_INGREDIENT_DETAILS} from '../../services/reducers/currentIngredient';
 
-function BurgerIngredients({data}) {
+function BurgerIngredients({ingredientCounter}) {
   const [current, setCurrent] = useState('one');
-  const [selectedIngredient, setSelectedIngredient] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useDispatch(); 
+
+  const {data} = useGetIngredientsQuery();
+  const ingredients = data?.data || []; 
+
   const handleOpen = useCallback(
-    (e, id) => { 
-      if (e.type === 'click') {
-        setSelectedIngredient(data.find((ingredient) => ingredient._id === id));
+    (e, ingredient) => {
+      if (e.type === 'click' || e?.key === 'Enter') {
+        dispatch(SHOW_INGREDIENT_DETAILS(ingredient));
         setIsOpen(true);
-      }
-    },
-    [data]
-  );
+    }
+  }, []);
 
   const handleClose = () => {
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    if (isOpen) return;
-    setSelectedIngredient({});
-  }, [isOpen]);
 
   return (
   <>
@@ -61,9 +61,10 @@ function BurgerIngredients({data}) {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                data.filter(({type}) => type==='bun')
-                .map((d) => (<InfoBurgerIngredient _id={d._id} key={d._id} name={d.name} price={d.price} image={d.image}
-                                                    onOpen={handleOpen}/>))
+                ingredients.filter(({type}) => type==='bun')
+                .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}
+                                                    onOpen={handleOpen}
+                                                    ingredientCounter={ingredientCounter}/>))
               }
             </div>
           </section>
@@ -73,9 +74,9 @@ function BurgerIngredients({data}) {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                data.filter(({type}) => type==='sauce')
-                .map((d) => (<InfoBurgerIngredient _id={d._id} key={d._id} name={d.name} price={d.price} image={d.image}
-                                                    onOpen={handleOpen}/>))
+                ingredients.filter(({type}) => type==='sauce')
+                .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}
+                                                    onOpen={handleOpen} ingredientCounter={ingredientCounter}/>))
               }
             </div>
           </section>
@@ -85,9 +86,10 @@ function BurgerIngredients({data}) {
             </h2>
             <div className={burgerIngredientsStyles.ingredient}>
               {
-                data.filter(({type}) => type==='main')
-                .map((d) => (<InfoBurgerIngredient _id={d._id}  key={d._id} name={d.name} price={d.price} image={d.image}
-                                                    onOpen={handleOpen}/>))
+                ingredients.filter(({type}) => type==='main')
+                .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}/* _id={d._id}  key={d._id} name={d.name} price={d.price} image={d.image} */
+                                                    onOpen={handleOpen}
+                                                    ingredientCounter={ingredientCounter}/>))
               }
             </div>
           </section>
@@ -97,8 +99,8 @@ function BurgerIngredients({data}) {
    
     {
       isOpen &&
-      <Modal id="ingredientDetails" isOpen={isOpen} onClose={handleClose}>
-          <IngredientDetails data={selectedIngredient} />
+      <Modal id="ingredient-details" isOpen={isOpen} onClose={handleClose}>
+          <IngredientDetails/>
       </Modal>
     }
   </> 
@@ -106,7 +108,7 @@ function BurgerIngredients({data}) {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape(IngredientType)).isRequired
+  ingredientCounter: PropTypes.instanceOf(Map).isRequired,
 }
 
 export default BurgerIngredients;
