@@ -1,56 +1,47 @@
-import {useEffect} from 'react';
 import {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 import appStyles from './app.module.css';
 import AppHeader from '../appHeader/appHeader';
 import BurgerIngredients from '../burgerIngredients/burgerIngredients';
 import BurgerConstructor from '../burgerConstructor/burgerConstructor';
+/* import {useGetIngredientsQuery} from "../../services/reducers/ingredients";  */
+import {getIngredients} from "../../services/reducers/ingredients"; 
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 function App() {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [ingredientCounter, setIngredientCounter] = useState(new Map());
+  const dispatch = useDispatch()
+  const {requested} = useSelector(state => state.ingredients)
+  useEffect(() => {
+      dispatch(getIngredients())
+  }, [dispatch])
 
-    const url = 'https://norma.nomoreparties.space/api/ingredients '; 
+  if (requested) {
+    return <div>Loading data...</div>;
+  }  
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const result = await response.json();
-          setData(result.data);
-        } 
-        catch (err) {setError(err);} 
-        finally {setLoading(false);}
-      };
+  /*if (error) {
+    return <div>Error: {error.message}</div>;
+  }  */ 
 
-      fetchData();
-    }, []); 
-
-    if (loading) {
-      return <div>Loading data...</div>;
-    }
-
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    }
-
-    return (
-      <div>
-        <AppHeader />
+  return (
+    <div>
+      <AppHeader />
+      <DndProvider backend={HTML5Backend}>
         <main>
           <div className={appStyles.main}>
             <h1 className={appStyles.header}>Соберите бургер</h1>
             <div className={appStyles['order-selection']}>
-              <BurgerIngredients data={data}/>
-              <BurgerConstructor data={data} /> 
+              <BurgerIngredients ingredientCounter={ingredientCounter}/>
+              <BurgerConstructor ingredientCounter={ingredientCounter}  onIngredientCounter={setIngredientCounter} /> 
             </div>
-         </div>
+        </div>
         </main>
-      </div>
-    );
+      </DndProvider>
+    </div>
+  );
 }
 
 export default App;
