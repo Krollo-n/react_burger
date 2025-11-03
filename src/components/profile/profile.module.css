@@ -1,0 +1,35 @@
+.form{
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 28px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jet Brains Mono";
+    column-gap: 8px;
+    font-weight: 400;
+    font-size: 16px; 
+    line-height: 114%;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.buttonCancel {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  color: #4c4cff
+}
+
+

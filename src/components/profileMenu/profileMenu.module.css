@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 1280px;
+    margin: 120px auto 0;
+    padding: 0 60px;
+}
+
+.info{
+    max-width: 360px;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    height: 64px;
+}
+
+.description{
+    opacity: .4;
+    margin-left: 40px;
+}

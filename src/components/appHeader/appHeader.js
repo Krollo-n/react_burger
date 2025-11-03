@@ -4,31 +4,39 @@ import {Logo} from '@ya.praktikum/react-developer-burger-ui-components';
 import {BurgerIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ListIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {NavLink,useMatch} from 'react-router-dom';
 
-class AppHeader extends React.Component {
-  render() {
-    return (
-      <header className={headerStyles.header} >
-        <nav className={headerStyles.container} >
-          <button className={headerStyles.buttonFirst}>
-            <BurgerIcon type="primary"/>
-            Конструктор               
-          </button>
-          <button className={headerStyles.buttonSecond}>
-            <ListIcon type="secondary"/>
+function AppHeader() {
+  const homeRoute = useMatch("/");
+  const feedOrderRoute = useMatch("/orders");
+  const profileRoute = useMatch("/profile");
+  return (
+    <header className={headerStyles.header} >
+      <nav className={headerStyles.container} >       
+        <button className={headerStyles.buttonFirst}>
+          <NavLink to={'/'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
+            <BurgerIcon type={homeRoute ? "primary" : "secondary"}/>
+            Конструктор  
+          </NavLink>             
+        </button>
+        <button className={headerStyles.buttonSecond}>
+          <NavLink to={'orders'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
+            <ListIcon type={feedOrderRoute ? "primary" : "secondary"}/>
             Лента заказов
-          </button>     
-          <div className={headerStyles.logo} >
-            <Logo/>
-          </div>
-          <button className={headerStyles.buttonSecond}>
-            <ProfileIcon type="secondary"/>
-            Личный кабинет               
-          </button>
-        </nav>
-      </header>
+          </NavLink>
+        </button>     
+        <div className={headerStyles.logo} >
+          <Logo/>
+        </div>
+        <button className={headerStyles.buttonSecond}>
+          <NavLink to={'/profile'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
+            <ProfileIcon type={profileRoute ? "primary" : "secondary"}/>
+            Личный кабинет 
+          </NavLink>             
+        </button>
+      </nav>
+    </header>
     );
-  }
 }
 
 export default AppHeader;

@@ -1,3 +1,4 @@
+import {useNavigate} from 'react-router-dom';
 import {getCurrentBun} from '../../services/selectors/currentIngredients';
 import {getCurrentIngredients} from '../../services/selectors/currentIngredients';
 import {useState} from 'react';
@@ -31,7 +32,10 @@ function BurgerConstructor({ingredientCounter, onIngredientCounter}) {
   const requested = useSelector(isRequested);
   const success = useSelector(isSuccess);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const user = useSelector(store => store.user.user);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -42,8 +46,14 @@ function BurgerConstructor({ingredientCounter, onIngredientCounter}) {
 
   const handleOrder = (evt) => {
     evt.preventDefault();
-    dispatch(addOrder({bun: currentBun, ingredients: currentIngredients}));
-    setIsOpen(true);
+
+    if (!user) {
+      navigate('/login');
+    } else
+    {
+      dispatch(addOrder({bun: currentBun, ingredients: currentIngredients}));
+      setIsOpen(true);
+    }
   };
 
   const deleteIngredient = ({key, _id, price}) => {

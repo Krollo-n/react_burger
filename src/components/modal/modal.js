@@ -5,7 +5,7 @@ import modalStyles from './modal.module.css';
 import {createPortal} from 'react-dom';
 import {useEffect} from 'react';
 
-function Modal({children, id, isOpen, onClose}) {
+function Modal({children, id, isOpen=true, onClose}) {
   const close = (e) => {
       if (e.target.id === id || e.key === 'Escape') {
         onClose();
@@ -39,7 +39,6 @@ function Modal({children, id, isOpen, onClose}) {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

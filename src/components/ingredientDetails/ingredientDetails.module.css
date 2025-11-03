@@ -2,6 +2,16 @@
   padding: 54px 40px 60px;
 }
 
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 680px;
+  text-align: center;
+  padding: 54px 40px 60px;
+  margin: 0 auto;
+}
+
 .mainHeader {
   font-family: "Jet Brains Mono";
   font-weight: 700;
@@ -36,6 +46,15 @@
   display: flex;
   justify-content: space-between;
   width: 80%;
+  color: #8585ad;
+  padding: 36px 0 0 0;
+  margin:0;
+}
+
+.infoPage {
+  display: flex;
+  justify-content: space-between;
+  width: 120%;
   color: #8585ad;
   padding: 36px 0 0 0;
   margin:0;
