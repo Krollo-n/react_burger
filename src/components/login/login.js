@@ -18,7 +18,7 @@ export const LoginPage = () => {
 
   return (
     <section className={loginStyles.wrapper}>
-        <form className={loginStyles.form} onSubmit={(e)=>onSubmit(e)}>
+        <form className={loginStyles.form} onSubmit={onSubmit}>
             <header className={'mb-6'}>
                 <h3 className={'text text_type_main-medium'}>
                     Вход

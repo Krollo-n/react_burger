@@ -4,7 +4,7 @@ import {Logo} from '@ya.praktikum/react-developer-burger-ui-components';
 import {BurgerIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ListIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {NavLink,useMatch} from 'react-router-dom';
+import {Link,NavLink,useMatch} from 'react-router-dom';
 
 function AppHeader() {
   const homeRoute = useMatch("/");
@@ -26,7 +26,9 @@ function AppHeader() {
           </NavLink>
         </button>     
         <div className={headerStyles.logo} >
-          <Logo/>
+          <Link to={'/'}>
+             <Logo/>
+          </Link>
         </div>
         <button className={headerStyles.buttonSecond}>
           <NavLink to={'/profile'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
