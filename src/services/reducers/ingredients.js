@@ -1,22 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../utils/api';
+import {request} from '../../utils/api'; 
 
 export const getIngredients = createAsyncThunk(
     'ingredients/getIngredients',
-    async () => {
-       try {
-         const result = await fetch(`${API.baseUrl}${API.endpoints.ingredients}`);
-
-          if (!result.ok) {
-            return Promise.reject(new Error(`Ошибка ${result.status}`));
-          }
-    
-          return await result.json();
-        } catch (err) {
-           return Promise.reject(new Error(`Ошибка: ${err}`));
-
-        }
-    }
+     async () => {return await request(`${API.endpoints.ingredients}`)} 
 )
 
 const initialState = {

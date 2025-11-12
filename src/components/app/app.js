@@ -1,33 +1,69 @@
-import {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
-import appStyles from './app.module.css';
-import AppHeader from '../appHeader/appHeader';
-import BurgerIngredients from '../burgerIngredients/burgerIngredients';
-import BurgerConstructor from '../burgerConstructor/burgerConstructor';
-/* import {useGetIngredientsQuery} from "../../services/reducers/ingredients";  */
 import {getIngredients} from "../../services/reducers/ingredients"; 
-import {DndProvider} from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import {getUser} from "../../services/thunks/user";
+import HomePage from '../../pages/home';
+import OrderFeedPage from '../../pages/orderFeed';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredientDetails/ingredientDetails';
+import {OnlyAuth, OnlyUnAuth} from '../protectedRoute';
+import HeaderPage from '../../pages/header';
+import LoginPage from '../../pages/login';
+import RegisterPage from '../../pages/register';
+import ForgotPasswordPage from '../../pages/forgotPassword';
+import ResetPasswordPage from '../../pages/resetPassword';
+import ProfilePage from '../../pages/profile';
+import OrdersHistoryPage from '../../pages/ordersHistory';
+import ProfileMenuPage from '../../pages/profileMenu';
+import IngredientDetailsPage from '../../pages/ingredientDetails';
 
 function App() {
-  const [ingredientCounter, setIngredientCounter] = useState(new Map());
+  const location = useLocation();
+  const navigate = useNavigate();
+  const background = location.state && location.state.background;
   const dispatch = useDispatch()
-  const {requested} = useSelector(state => state.ingredients)
+
   useEffect(() => {
+      dispatch(getUser())
       dispatch(getIngredients())
   }, [dispatch])
 
-  if (requested) {
-    return <div>Loading data...</div>;
-  }  
-
-  /*if (error) {
-    return <div>Error: {error.message}</div>;
-  }  */ 
+  const handleClose = () => {
+    navigate(-1);
+  };
 
   return (
-    <div>
+    <>
+      <Routes location={background || location}>
+        <Route path={'/'} element={<HeaderPage/>}>
+          <Route path={'/'} element={<HomePage/>}/>
+          <Route path={'/ingredients/:id'} element={<IngredientDetailsPage/>}/>
+          <Route path={'/login'} element={<OnlyUnAuth element={<LoginPage/>}/>}/>
+          <Route path={'/orders'} element={<OrderFeedPage/>}/>
+          <Route path={'/register'} element={<OnlyUnAuth element={<RegisterPage/>}/>}/>
+          <Route path={'/forgot-password'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
+          <Route path={'/reset-password'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
+          <Route path={'/profile'} element={<OnlyAuth element={<ProfileMenuPage/>}/>}>
+            <Route index element={<ProfilePage/>}/>
+            <Route path={'orders'} element={<OrdersHistoryPage/>} />
+          </Route>
+        </Route>  
+      </Routes>
+
+      {background && (
+        <Routes>
+          <Route
+            path='/ingredients/:id'
+            element={
+                <Modal id='ingredientDetails' onClose={handleClose}>
+                    <IngredientDetails/>
+                </Modal>
+            }
+          />
+        </Routes>)}
+    </>
+    /* <div>
       <AppHeader />
       <DndProvider backend={HTML5Backend}>
         <main>
@@ -40,7 +76,7 @@ function App() {
         </div>
         </main>
       </DndProvider>
-    </div>
+    </div> */
   );
 }
 

@@ -1,15 +1,12 @@
 import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useCallback} from 'react';
 import {useRef} from 'react';
 import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import burgerIngredientsStyles from './burgerIngredients.module.css';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import InfoBurgerIngredient from '../infoBurgerIngredient/infoBurgerIngredient';
-import {IngredientType} from '../../utils/types'
-import Modal from '../modal/modal';
-import IngredientDetails from '../ingredientDetails/ingredientDetails';
 import {getIngredients} from "../../services/selectors/ingredients";
 import {SHOW_INGREDIENT_DETAILS} from '../../services/reducers/currentIngredient';
 
@@ -18,7 +15,6 @@ function BurgerIngredients({ingredientCounter}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch(); 
-
   const ingredients = useSelector(getIngredients)
 
   const handleOpen = useCallback(
@@ -27,6 +23,7 @@ function BurgerIngredients({ingredientCounter}) {
         dispatch(SHOW_INGREDIENT_DETAILS(ingredient));
         setIsOpen(true);
     }
+    
   }, []);
 
   const handleClose = () => {
@@ -140,12 +137,6 @@ function BurgerIngredients({ingredientCounter}) {
       </div>
     </section>
    
-    {
-      isOpen &&
-      <Modal id="ingredient-details" isOpen={isOpen} onClose={handleClose}>
-          <IngredientDetails/>
-      </Modal>
-    }
   </> 
   );
 }

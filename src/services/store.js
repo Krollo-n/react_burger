@@ -3,6 +3,8 @@ import ingredientsReducer from "./reducers/ingredients" ;
 import currentIngredientReducer from "./reducers/currentIngredient";
 import currentIngredientsReducer from "./reducers/currentIngredients";
 import orderDetailsSlice from "./reducers/orderDetails";
+import userReducer from "./reducers/user";
+import passwordReducer from "./reducers/password";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ const store = configureStore({
     currentIngredient: currentIngredientReducer,
     currentIngredients: currentIngredientsReducer,
     orderDetails: orderDetailsSlice,
+    user: userReducer,
+    password: passwordReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });

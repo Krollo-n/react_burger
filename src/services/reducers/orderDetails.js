@@ -1,28 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../utils/api';
+import {request} from '../../utils/api'; 
 
 export const addOrder = createAsyncThunk(
   'orderDetails/addOrder',
-  async (arg, {reject}) => {
-    try {
-      let ingredientIds = arg.ingredients.map(el => el._id).concat([arg.bun?._id, arg.bun?._id])
-      const result = await fetch(`${API.baseUrl}${API.endpoints.orders}`, {
+   async (arg) => {
+    let ingredientIds = arg.ingredients.map(el => el._id).concat([arg.bun?._id, arg.bun?._id])
+    return await request(`${API.endpoints.orders}`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ingredients: ingredientIds}),
-      });
-
-      if (!result.ok) {
-        return Promise.reject(new Error(`Ошибка ${result.status}`));
-      }
-
-      return await result.json();
-    } catch (err) {
-      return reject(
-        `Ошибка: ${err}`
-      );
-    }
-  }
+        headers: {'Content-Type': 'application/json;charset=utf-8'},
+        body: JSON.stringify({"ingredients": ingredientIds})
+    })
+  } 
 );
 
 const initialState = {

@@ -3,10 +3,12 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import infoBurgerIngredientStyles from './infoBurgerIngredient.module.css';
 import {useDrag} from "react-dnd";
-import {IngredientType} from '../../utils/types'
+import {IngredientType} from '../../utils/types';
+import {Link, useLocation} from 'react-router-dom';
 
 function InfoBurgerIngredient({ingredient, onOpen, ingredientCounter}) {
   const counter = ingredientCounter.get(ingredient._id); 
+  const location = useLocation();
 
   const [{isDrag}, drag, dragPreview] = useDrag(() => ({
     type: 'ingredient',
@@ -17,6 +19,10 @@ function InfoBurgerIngredient({ingredient, onOpen, ingredientCounter}) {
   }));  
 
   return (
+   <Link
+      to={`/ingredients/${ingredient._id}`}
+      state={{ background: location }}
+   >
     <div ref={dragPreview} role="button" tabIndex="0" onClick={(e) => onOpen(e, ingredient)}>
       <div ref={drag} className={`${infoBurgerIngredientStyles.info} ${isDrag && infoBurgerIngredientStyles.drag}`} >
         {(counter && <Counter count={counter} size="default" />) ||null}
@@ -28,6 +34,7 @@ function InfoBurgerIngredient({ingredient, onOpen, ingredientCounter}) {
         <span className={infoBurgerIngredientStyles.header}>{ingredient?.name}</span>
       </div>
     </div>  
+   </Link> 
   );
 }
 
