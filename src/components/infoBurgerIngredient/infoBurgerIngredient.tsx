@@ -8,7 +8,7 @@ import {FC} from 'react';
 
 interface IInfoBurgerIngredientProps {
   ingredient: IIngredient;
-  onOpen: (e: any, ingredient: IIngredient) => void;
+  onOpen: (e: React.MouseEvent<Element, MouseEvent>, ingredient: IIngredient) => void;
   ingredientCounter: Map<string, number>;
 }
 
@@ -26,7 +26,7 @@ const InfoBurgerIngredient: FC<IInfoBurgerIngredientProps> = ({ingredient, onOpe
 
   return (
     <Link to={`/ingredients/${ingredient._id}`}  state={{ background: location }}>
-      <div ref={dragPreview} role="button" tabIndex={0} onClick={(e) => onOpen(e, ingredient)}>
+      <div ref={dragPreview} role="button" tabIndex={0} onClick={(e) => onOpen(e , ingredient)}>
         <div ref={drag} className={`${infoBurgerIngredientStyles.info} ${isDrag && infoBurgerIngredientStyles.drag}`} >
           {(counter && <Counter count={counter} size="default" />) ||null}
           <img src={ingredient?.image} alt={ingredient?.name}/>

@@ -22,8 +22,8 @@ const BurgerIngredients: FC<IBurgerIngredientsProps> = ({ingredientCounter}) => 
   const ingredients = useAppSelector(getIngredients)
 
   const handleOpen = useCallback(
-    (e: any/*React.KeyboardEvent<HTMLInputElement>*/, ingredient: IIngredient) => {
-      if (e.type === 'click' || e?.key === 'Enter') {
+    (e: React.MouseEvent<Element, MouseEvent>, ingredient: IIngredient) => {
+      if (e.type === 'click' ) {
         dispatch(getIndredientDetails(ingredient));
     }
     

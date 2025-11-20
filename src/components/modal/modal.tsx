@@ -13,20 +13,24 @@ interface IModalProps {
 }
 
 const Modal: FC<IModalProps> = ({children, id, isOpen=true, onClose}) => {
-  const close = (e: any) => {
-      if (e.target.id === id || e.key === 'Escape') {
-        onClose();
-      }
+  const closeByKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') onClose();
+  };
+
+  const closeByMouse = (e: MouseEvent) => {
+    const target = e.target as HTMLDivElement;
+    
+    if (target.id === id) 
+       onClose();
   };
 
   useEffect(() => {
     if (!isOpen) return;
-
-    document.addEventListener('click',  close);
-    document.addEventListener('keydown', close);
+    document.addEventListener('click',  closeByMouse);
+    document.addEventListener('keydown', closeByKey);
     return () => {
-      document.removeEventListener('click',  close);
-      document.removeEventListener('keydown', close);
+      document.removeEventListener('click',  closeByMouse);
+      document.removeEventListener('keydown', closeByKey);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
