@@ -49,3 +49,29 @@ export interface IUserLogin {
   name: string;
   password: string | undefined;
 }
+
+export interface IOrderFeed {
+  _id: string;   
+  ingredients: string[];
+  status: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  number: number;
+}
+
+export enum WebsocketStatus {
+		CONNECTING = 'CONNECTING',
+		ONLINE = 'ONLINE',
+		OFFLINE= 'OFFLINE'
+}
+
+export interface IWsMessage {
+		success: boolean,
+		orders: IOrderFeed[],
+		total: number,
+		totalToday: number
+}
+
+
+
