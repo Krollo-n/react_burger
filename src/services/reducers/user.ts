@@ -23,8 +23,6 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
-         localStorage.setItem('accessToken', action.payload.accessToken.split(" ")[1]);
-         localStorage.setItem('refreshToken', action.payload.refreshToken);
          state.user = action.payload.user;
          state.isAuthChecked = true;
          state.isLoading = false;
@@ -39,8 +37,6 @@ export const userSlice = createSlice({
          state.error = action.payload  as IError;
        })
       .addCase(loginUser.fulfilled, (state, action) => {
-         localStorage.setItem('accessToken', action.payload.accessToken.split(" ")[1]);
-         localStorage.setItem('refreshToken', action.payload.refreshToken);
          state.user = action.payload.user;
          state.isAuthChecked = true;
          state.isLoading = false;

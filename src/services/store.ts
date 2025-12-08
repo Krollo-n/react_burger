@@ -7,6 +7,7 @@ import userReducer from "./reducers/user";
 import passwordReducer from "./reducers/password";
 import {ordersReducer} from './reducers/orders';
 import {socketMiddleware} from "./middlewares/socketMiddleware";
+import authMiddleware from "./middlewares/authMiddleware";
 import {wsOrdersConnect, wsOrdersDisconnect, wsOrdersConnecting, wsOrdersOpen, wsOrdersClose, wsOrdersMessage, wsOrdersError} from './actions/orders';
 import {wsProfileOrdersConnect,wsProfileOrdersDisconnect, wsProfileOrdersConnecting, wsProfileOrdersOpen,wsProfileOrdersClose,wsProfileOrdersMessage,wsProfileOrdersError} from "./actions/userProfileOrders";
 import {userProfileOrdersReducer} from './reducers/userProfileOrders';
@@ -42,7 +43,7 @@ const store = configureStore({
     orders: ordersReducer,
     userProfileOrders: userProfileOrdersReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(OrdersMiddleware, UserProfileOrdersMiddleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authMiddleware, OrdersMiddleware, UserProfileOrdersMiddleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;

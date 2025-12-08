@@ -1,10 +1,10 @@
 import doneIcon from '../../images/done.jpg';
 import orderDetailsStyles from './orderDetails.module.css';
 import {getOrderNumber} from '../../services/selectors/orderDetails';
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../utils/hooks/useAppDispatch";
 
 function OrderDetails() {
-  const orderNumber = useSelector(getOrderNumber);
+  const orderNumber = useAppSelector(getOrderNumber);
 
   return (
     <div className={orderDetailsStyles.main}>

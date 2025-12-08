@@ -1,5 +1,5 @@
 import ingredientDetailsStyles from './ingredientDetails.module.css';
-import {useSelector} from 'react-redux';
+import {useAppSelector} from "../../utils/hooks/useAppDispatch";
 import {useParams} from 'react-router-dom';
 import {getIngredients} from '../../services/selectors/ingredients'; 
 import {FC} from 'react';
@@ -10,7 +10,7 @@ interface IIngredientDetailsProps {
 
 const IngredientDetails: FC<IIngredientDetailsProps> = ({isRoutePage = false}) => {
   const {id} = useParams();
-  const ingredients = useSelector(getIngredients)
+  const ingredients = useAppSelector(getIngredients)
   if (!ingredients) {
     return null;
   }  

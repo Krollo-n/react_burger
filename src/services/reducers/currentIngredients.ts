@@ -27,7 +27,7 @@ const currentIngredientsSlice = createSlice({
     },
     deleteCurrentIngredient: (state, action) => {
       state.ingredients = state.ingredients.filter(
-        (ingredient) => ingredient.key !== action.payload.key
+        (ingredient) => ingredient.key !== action.payload/* .key */
       );
     },
     sortingIngredient: (state, {payload: {dragIndex, hoverIndex}}) => {
