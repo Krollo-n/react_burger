@@ -5,11 +5,11 @@ import {IIngredientKey, IOrder, IError} from '../../utils/types';
 
 export const addOrder = createAsyncThunk(
   'orderDetails/addOrder',
-   async ({ingredients, bun}: { ingredients: IIngredientKey[], bun: IIngredientKey }) => {
+   async ({ingredients, bun, token}: { ingredients: IIngredientKey[], bun: IIngredientKey, token: string }) => {
     let ingredientIds = ingredients.map(el => el._id).concat([bun?._id, bun?._id])
     return await request(`${API.endpoints.orders}`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json;charset=utf-8'},
+      headers: {'Content-Type': 'application/json;charset=utf-8', Authorization: `Bearer ${token}`},
       body: JSON.stringify({"ingredients": ingredientIds})
     })
   } 

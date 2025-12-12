@@ -1,5 +1,6 @@
 export const API ={
   baseUrl: 'https://norma.education-services.ru/api',
+  wsBaseUrl: 'wss://norma.education-services.ru',
   endpoints: {
     ingredients: '/ingredients',
     orders: '/orders',

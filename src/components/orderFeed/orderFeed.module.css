@@ -1,0 +1,22 @@
+.main{
+  overflow-y: auto;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.orderList {
+  max-height: 700px;
+  overflow-y: scroll;   
+  padding: 0;
+}
+
+.order{
+  margin-bottom: 16px;
+  list-style: none;
+}
+
+.decor {
+  text-decoration: none;
+  color: #DADADB
+}

@@ -19,7 +19,7 @@ function AppHeader() {
           </NavLink>             
         </button>
         <button className={headerStyles.buttonSecond}>
-          <NavLink to={'orders'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
+          <NavLink to={'feed'} className={({isActive}) => {return `${isActive ? headerStyles.buttonFirst : headerStyles.buttonSecond}`}}>
             <ListIcon type={feedOrderRoute ? "primary" : "secondary"}/>
             Лента заказов
           </NavLink>

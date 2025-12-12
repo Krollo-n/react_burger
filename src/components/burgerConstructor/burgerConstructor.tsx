@@ -49,11 +49,13 @@ const BurgerConstructor: FC<IBurgerConstructorProps> = ({ingredientCounter, onIn
   const handleOrder = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
+    let token = localStorage.getItem('accessToken');
+
     if (!user) {
       navigate('/login');
     } else
     {
-      dispatch(addOrder({bun: currentBun, ingredients: currentIngredients}));
+      dispatch(addOrder({bun: currentBun, ingredients: currentIngredients, token: token}));
       setIsOpen(true);
     }
   };

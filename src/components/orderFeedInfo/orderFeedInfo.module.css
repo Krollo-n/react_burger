@@ -1,0 +1,53 @@
+.main{
+  border-radius: 40px;
+  min-height: 160px;
+  cursor: pointer;
+  text-decoration: none;
+  background: #1C1C21;
+  padding: 24px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.imageBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #303078;
+  background: #131316;
+  position: relative;
+  user-select: none;
+}
+.image{
+  max-height: 60px;  
+}
+
+.images{
+  position: relative;
+  height: 64px;
+  margin-top: 6px;
+}
+
+.rest{
+  position: absolute;
+}
+
+.total{
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
