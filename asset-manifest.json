@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "./static/css/main.19d3670f.css",
-    "main.js": "./static/js/main.ba44dbbb.js",
-    "static/js/453.304f101b.chunk.js": "./static/js/453.304f101b.chunk.js",
-    "static/media/JetBrainsMono-Bold.woff": "./static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
-    "static/media/JetBrainsMono-Regular.woff": "./static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
-    "static/media/JetBrainsMono-Bold.woff2": "./static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
-    "static/media/JetBrainsMono-Regular.woff2": "./static/media/JetBrainsMono-Regular.b60380891bcf2eb241ca.woff2",
-    "static/media/iceland.woff": "./static/media/iceland.77ad7fc2baffd9305538.woff",
-    "static/media/iceland.woff2": "./static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
-    "index.html": "./index.html",
-    "main.19d3670f.css.map": "./static/css/main.19d3670f.css.map",
-    "main.ba44dbbb.js.map": "./static/js/main.ba44dbbb.js.map",
-    "453.304f101b.chunk.js.map": "./static/js/453.304f101b.chunk.js.map"
+    "main.css": "/krollo-n.github.io/static/css/main.5f9e9253.css",
+    "main.js": "/krollo-n.github.io/static/js/main.af6ca990.js",
+    "static/js/453.304f101b.chunk.js": "/krollo-n.github.io/static/js/453.304f101b.chunk.js",
+    "static/media/JetBrainsMono-Bold.woff": "/krollo-n.github.io/static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
+    "static/media/JetBrainsMono-Regular.woff": "/krollo-n.github.io/static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
+    "static/media/JetBrainsMono-Bold.woff2": "/krollo-n.github.io/static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
+    "static/media/JetBrainsMono-Regular.woff2": "/krollo-n.github.io/static/media/JetBrainsMono-Regular.b60380891bcf2eb241ca.woff2",
+    "static/media/iceland.woff": "/krollo-n.github.io/static/media/iceland.77ad7fc2baffd9305538.woff",
+    "static/media/iceland.woff2": "/krollo-n.github.io/static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
+    "index.html": "/krollo-n.github.io/index.html",
+    "main.5f9e9253.css.map": "/krollo-n.github.io/static/css/main.5f9e9253.css.map",
+    "main.af6ca990.js.map": "/krollo-n.github.io/static/js/main.af6ca990.js.map",
+    "453.304f101b.chunk.js.map": "/krollo-n.github.io/static/js/453.304f101b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.19d3670f.css",
-    "static/js/main.ba44dbbb.js"
+    "static/css/main.5f9e9253.css",
+    "static/js/main.af6ca990.js"
   ]
 }
