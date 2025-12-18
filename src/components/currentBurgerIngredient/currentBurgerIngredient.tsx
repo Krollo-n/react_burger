@@ -69,7 +69,8 @@ const CurrentBurgerIngredient: FC<ICurrentBurgerIngredientProps> = ({ingredient,
       className={`${currentBurgerIngredientStyles.item}${(isDrag && ` ${currentBurgerIngredientStyles.itemDragging}`) || ''}`}
       key={`container-${ingredient.key}`}
       ref={ref}
-      data-handler-id={handlerId}
+      data-handler-id={handlerId} 
+      data-test-id={`constructor_element-${ingredient._id}`}  
     >
       <DragIcon key={`icon-${ingredient.key}`} type="primary" />
       <ConstructorElement

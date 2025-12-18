@@ -19,6 +19,7 @@ import OrdersHistoryPage from '../../pages/ordersHistory';
 import ProfileMenuPage from '../../pages/profileMenu';
 import OrderFeedCardPage from '../../pages/orderFeedCard';
 import IngredientDetailsPage from '../../pages/ingredientDetails';
+import {Navigate} from "react-router-dom";
 
 function App() {
   const location = useLocation();
@@ -39,7 +40,7 @@ function App() {
     <>
       <Routes location={background || location}>
         <Route path={'/'} element={<HeaderPage/>}>
-          <Route path={'/'} element={<HomePage/>}/>
+          <Route index path={'/'} element={<HomePage/>}/>
           <Route path={'/ingredients/:id'} element={<IngredientDetailsPage/>}/>
           <Route path={'/login'} element={<OnlyUnAuth element={<LoginPage/>}/>}/>
           <Route path={'/feed'} element={<OrderFeedPage/>}/>
@@ -52,7 +53,8 @@ function App() {
             <Route index element={<ProfilePage/>}/>
             <Route path={'orders'} element={<OrdersHistoryPage/>} />
           </Route>
-        </Route>  
+        </Route> 
+        <Route path="/*" element={<Navigate to="/" />}  /> 
       </Routes>
 
       {background && (

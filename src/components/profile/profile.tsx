@@ -11,8 +11,8 @@ export const Profile = () => {
   const user = useAppSelector(state => state.user.user);
 
   const {form, change, reset} = useFormData({
-    name: user.name,
-    email: user.email,
+    name: user!.name,
+    email: user!.email,
     password: ''
   })
 
@@ -47,7 +47,7 @@ export const Profile = () => {
                 onChange={change}
                 value={form?.password || ''}/>
             {
-                (form.name !== user.name || form.email !== user.email || form.password) &&
+                (form.name !== user?.name || form.email !== user.email || form.password) &&
                 <div className={profileStyles.buttons}>
                     <Button htmlType="button" type="secondary" >
                       <Link to={'/profile'} className={`text text_type_main-default text_color_accent mr-7 ${profileStyles.buttonCancel}`} onClick={reset}>

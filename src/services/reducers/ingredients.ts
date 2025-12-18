@@ -2,18 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../utils/api';
 import {request} from '../../utils/api'; 
 import {IIngredient} from "../../utils/types";
+import {IIngredientsSlice} from '../../utils/types';
 
 export const getIngredients = createAsyncThunk(
   'ingredients/getIngredients',
    async () => {return await request(`${API.endpoints.ingredients}`)} 
 )
-
-interface IIngredientsSlice{
-  ingredients: IIngredient[];
-  requested: boolean;
-  succeed: boolean;
-  failed: boolean;
-}
 
 const initialState: IIngredientsSlice = {
   ingredients: [],

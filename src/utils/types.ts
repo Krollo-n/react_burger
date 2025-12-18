@@ -73,5 +73,44 @@ export interface IWsMessage {
 		totalToday: number
 }
 
+export type ICurrentIngredientsSlice = {
+  bun: null | IIngredientKey;
+  ingredients: IIngredientKey[];
+};
 
+export interface ICurrentIngredientSlice {
+	ingredient: IIngredient | null
+}
+
+export interface IIngredientsSlice{
+  ingredients: IIngredient[];
+  requested: boolean;
+  succeed: boolean;
+  failed: boolean;
+}
+
+export interface IPasswordSlice {
+  restorePasswordRequested: boolean,
+  restorePasswordSucceed: boolean,
+  restorePasswordFailed: boolean,
+  resetPasswordRequested: boolean,
+  resetPasswordSucceed: boolean,
+  resetPasswordFailed: boolean
+}
+
+export interface IUserSlice {
+  user: IUserLogin | null;
+  isAuthChecked: boolean;
+  isLoading: boolean;
+  error: IError | null;
+}
+
+export interface IOrdersStore {
+  orders: IOrderFeed[];
+  total: number;
+  totalToday: number;
+  order?: IOrderFeed;
+  status: WebsocketStatus;
+  connectionError: string;
+}
 

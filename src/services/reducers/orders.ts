@@ -1,17 +1,8 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {IOrderFeed, WebsocketStatus} from '../../utils/types';
+import {IOrderFeed, WebsocketStatus, IOrdersStore} from '../../utils/types';
 import {wsOrdersClose, wsOrdersConnecting, wsOrdersError, wsOrdersMessage, wsOrdersOpen} from "../actions/orders";
 import API from '../../utils/api';
 import {request} from '../../utils/api';
-
-export interface IOrdersStore {
-  orders: IOrderFeed[];
-  total: number;
-  totalToday: number;
-  order?: IOrderFeed;
-  status: WebsocketStatus;
-  connectionError: string;
-}
 
 const initialState: IOrdersStore = {
   orders: [],
@@ -36,7 +27,6 @@ export const ordersReducer = createReducer(initialState, (builder) => {
     })
     .addCase(wsOrdersOpen, (state) => {
        state.status = WebsocketStatus.ONLINE;
-       state.connectionError = '';
     })
     .addCase(wsOrdersClose, (state) => {
        state.status = WebsocketStatus.OFFLINE;

@@ -1,13 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {editUser, getUser, loginUser, registerUser, logout} from '../thunks/user';
 import {IUserLogin, IError} from "../../utils/types";
-
-interface IUserSlice {
-  user: IUserLogin | null;
-  isAuthChecked: boolean;
-  isLoading: boolean;
-  error: IError | null;
-}
+import {IUserSlice} from '../../utils/types';
 
 const initialState: IUserSlice = {
   user: null,

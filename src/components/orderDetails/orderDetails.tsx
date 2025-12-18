@@ -7,7 +7,7 @@ function OrderDetails() {
   const orderNumber = useAppSelector(getOrderNumber);
 
   return (
-    <div className={orderDetailsStyles.main}>
+    <div className={orderDetailsStyles.main} data-test-id='order_details'>
       <span className={orderDetailsStyles.orderNumber}>{orderNumber}</span>
       <h3 className={orderDetailsStyles.header}>идентификатор заказа</h3>
       <img className={orderDetailsStyles.image} src={doneIcon} alt="Заказ принят"/> 

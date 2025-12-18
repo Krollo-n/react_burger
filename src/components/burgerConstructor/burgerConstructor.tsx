@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import {getCurrentBun} from '../../services/selectors/currentIngredients';
-import {getCurrentIngredients} from '../../services/selectors/currentIngredients';
-import {useState} from 'react';
+import {getCurrentIngredients, getCurrentIngredientSum} from '../../services/selectors/currentIngredients';
+import {useState, useMemo} from 'react';
 import burgerConstructorStyles from './burgerConstructor.module.css'; 
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'; 
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';  
@@ -15,7 +15,7 @@ import {addOrder} from '../../services/reducers/orderDetails';
 import {isFailed} from '../../services/selectors/orderDetails'; 
 import {isRequested} from '../../services/selectors/orderDetails';
 import {isSuccess} from '../../services/selectors/orderDetails';
-import {addIngeredient, deleteCurrentIngredient, reset} from '../../services/reducers/currentIngredients';
+import {addIngredient, deleteCurrentIngredient, reset} from '../../services/reducers/currentIngredients';
 import CurrentBurgerIngredient from '../currentBurgerIngredient/currentBurgerIngredient';
 import {FC, FormEvent} from 'react';
 import {IIngredientKey, IIngredient} from "../../utils/types";
@@ -62,13 +62,14 @@ const BurgerConstructor: FC<IBurgerConstructorProps> = ({ingredientCounter, onIn
 
   const deleteIngredient = (ingredient:IIngredientKey) => {
     dispatch(deleteCurrentIngredient(ingredient.key));
-    const value = ingredientCounter.get(ingredient._id) - 1;
+    const value = ingredientCounter.get(ingredient._id)! - 1;
     onIngredientCounter(new Map(ingredientCounter.set(ingredient._id, value)));
     onDecreaseTotalPrice(ingredient.price);
   };
 
   const currentBun = useAppSelector(getCurrentBun);
   const currentIngredients = useAppSelector(getCurrentIngredients);
+  const currentIngredientSum = useAppSelector(getCurrentIngredientSum);
 
   const increaseIngredientCounter = (ingredient:IIngredient) => {
     let value = ingredientCounter.get(ingredient._id);
@@ -109,7 +110,7 @@ const BurgerConstructor: FC<IBurgerConstructorProps> = ({ingredientCounter, onIn
         ingredientTypeDrop: monitor.getItem()?.type,
       }),
       drop: (ingredient: IIngredient) => {
-        dispatch(addIngeredient({ingredient, key: uuidv4()}));
+        dispatch(addIngredient({ingredient, key: uuidv4()}));
         onIngredientCounter(
           new Map(
             ingredientCounter.set(
@@ -124,10 +125,14 @@ const BurgerConstructor: FC<IBurgerConstructorProps> = ({ingredientCounter, onIn
     [ingredientCounter]
   );
 
+  const totalPriceSave = useMemo(() => {
+    return (currentBun?currentBun.price*2:0) + currentIngredientSum;
+  }, [currentBun, currentIngredientSum]);
+
   return (
      <> 
       <section>
-        <form className={burgerConstructorStyles.order} ref={drop} onSubmit={handleOrder}>
+        <form className={burgerConstructorStyles.order} ref={drop} onSubmit={handleOrder}  data-test-id='constructor-drop_area'>
             {((currentBun && (
                 <ConstructorElement
                   extraClass={burgerConstructorStyles.fix}
@@ -180,10 +185,10 @@ const BurgerConstructor: FC<IBurgerConstructorProps> = ({ingredientCounter, onIn
             )}
         <div className={burgerConstructorStyles.final}>
             <div className={burgerConstructorStyles.total}>
-                <span className="text text_type_digits-medium">{totalPrice}</span>
+                <span className="text text_type_digits-medium" data-test-id='constructor-total-price'>{totalPriceSave}</span>
                 <CurrencyIcon type="primary"/>
             </div>
-            <Button htmlType="submit" type="primary" size="large">
+            <Button htmlType="submit" type="primary" size="large" data-test-id='order_button'>
                 {requested ? 'Загрузка...' : 'Оформить заказ'}
             </Button>
         </div>
