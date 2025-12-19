@@ -9,7 +9,7 @@ export const getIngredients = createAsyncThunk(
    async () => {return await request(`${API.endpoints.ingredients}`)} 
 )
 
-const initialState: IIngredientsSlice = {
+export const initialState: IIngredientsSlice = {
   ingredients: [],
   requested: false,
   succeed: false,

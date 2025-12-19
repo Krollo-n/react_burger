@@ -1,11 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ICurrentIngredientSlice} from '../../utils/types';
 
-// interface ICurrentIngredientSlice {
-// 	ingredient: IIngredient | null
-// }
-
-const initialState: ICurrentIngredientSlice = {
+export  const initialState: ICurrentIngredientSlice = {
   ingredient: null
 };
 

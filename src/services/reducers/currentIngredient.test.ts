@@ -1,4 +1,5 @@
 import currentIngredientSlice from './currentIngredient';
+import {initialState} from './currentIngredient';
 import {getIndredientDetails, reset} from '../../services/reducers/currentIngredient';
 import {IIngredient, ICurrentIngredientSlice} from '../../utils/types';
 
@@ -18,10 +19,6 @@ const ingredient1: IIngredient = {
 };
 
 describe('currentIngredient reducer', () => {
-  const initialState: ICurrentIngredientSlice = {
-    ingredient: null
-  };
-
   it('should get indredient details', () => {
     const data = {ingredient: ingredient1};
     const newState = currentIngredientSlice(initialState, getIndredientDetails(data.ingredient));

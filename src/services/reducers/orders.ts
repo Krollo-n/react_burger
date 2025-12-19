@@ -4,7 +4,7 @@ import {wsOrdersClose, wsOrdersConnecting, wsOrdersError, wsOrdersMessage, wsOrd
 import API from '../../utils/api';
 import {request} from '../../utils/api';
 
-const initialState: IOrdersStore = {
+export const initialState: IOrdersStore = {
   orders: [],
   total: 0,
   totalToday: 0,

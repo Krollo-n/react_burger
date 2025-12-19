@@ -24,7 +24,7 @@ interface IOrderDetailsSlice {
   requested: boolean;
 }
 
-const initialState: IOrderDetailsSlice = {
+export const initialState: IOrderDetailsSlice = {
   order: null,
   status: false,
   error: null,

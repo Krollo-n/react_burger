@@ -1,4 +1,20 @@
 /// <reference types="cypress" />
+declare namespace Cypress {
+  interface Chainable {
+    getByAttribute(attributeName: string, attributeValue: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>): Chainable<JQuery<HTMLElement>>;
+    getByTestId(selector: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>): Chainable<JQuery<HTMLElement>>;
+  }
+}
+
+Cypress.Commands.add('getByAttribute', (attributeName, attributeValue, ...args) => {
+  const selector = `[${attributeName}="${attributeValue}"]`;
+  return cy.get(selector, ...args);
+});
+
+Cypress.Commands.add('getByTestId', (selector, ...args) => {
+  return cy.get(`[data-test-id="${selector}"]`, ...args);
+});
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite

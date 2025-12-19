@@ -1,4 +1,5 @@
 import currentIngredientsSlice from './currentIngredients';
+import {initialState} from './currentIngredients';
 import {addIngredient, deleteCurrentIngredient, sortingIngredient, reset} from '../../services/reducers/currentIngredients';
 import {IIngredientKey, ICurrentIngredientsSlice} from '../../utils/types';
 
@@ -49,11 +50,6 @@ const ingredient2: IIngredientKey = {
 };
 
 describe('currentIngredients reducer', () => {
-  const initialState: ICurrentIngredientsSlice = {
-    bun: null,
-    ingredients: []
-  };
-
   it('should add bun', () => {
     const data = {ingredient: bun, key: '6661'};
     const newState = currentIngredientsSlice(initialState, addIngredient(data));

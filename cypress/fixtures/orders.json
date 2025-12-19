@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "name": "Метеоритный space био-марсианский минеральный флюоресцентный бургер",
+  "order": {
+    "ingredients": [
+      {
+        "_id":"643d69a5c3f7b9001cfa0943",
+        "name":"Соус фирменный Space Sauce",
+        "type":"sauce",
+        "proteins":50,
+        "fat":22,
+        "carbohydrates":11,
+        "calories":14,
+        "price":80,
+        "image":"https://code.s3.yandex.net/react/code/sauce-04.png",
+        "image_mobile":"https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
+        "image_large":"https://code.s3.yandex.net/react/code/sauce-04-large.png",
+         "__v":0
+      },
+      {
+        "_id":"643d69a5c3f7b9001cfa0941",
+        "name":"Биокотлета из марсианской Магнолии",
+        "type":"main",
+        "proteins":420,
+        "fat":142,
+        "carbohydrates":242,
+        "calories":4242,
+        "price":424,
+        "image":"https://code.s3.yandex.net/react/code/meat-01.png",
+        "image_mobile":"https://code.s3.yandex.net/react/code/meat-01-mobile.png",
+        "image_large":"https://code.s3.yandex.net/react/code/meat-01-large.png",
+        "__v":0
+      },
+      {
+        "_id":"643d69a5c3f7b9001cfa0940",
+        "name":"Говяжий метеорит (отбивная)",
+        "type":"main",
+        "proteins":800,
+        "fat":800,
+        "carbohydrates":300,
+        "calories":2674,
+        "price":3000,
+        "image":"https://code.s3.yandex.net/react/code/meat-04.png",
+        "image_mobile":"https://code.s3.yandex.net/react/code/meat-04-mobile.png",
+        "image_large":"https://code.s3.yandex.net/react/code/meat-04-large.png",
+        "__v":0},
+      {"_id":"643d69a5c3f7b9001cfa0946","name":"Хрустящие минеральные кольца","type":"main","proteins":808,"fat":689,"carbohydrates":609,"calories":986,"price":300,"image":"https://code.s3.yandex.net/react/code/mineral_rings.png","image_mobile":"https://code.s3.yandex.net/react/code/mineral_rings-mobile.png","image_large":"https://code.s3.yandex.net/react/code/mineral_rings-large.png","__v":0},{"_id":"643d69a5c3f7b9001cfa0947","name":"Плоды Фалленианского дерева","type":"main","proteins":20,"fat":5,"carbohydrates":55,"calories":77,"price":874,"image":"https://code.s3.yandex.net/react/code/sp_1.png","image_mobile":"https://code.s3.yandex.net/react/code/sp_1-mobile.png","image_large":"https://code.s3.yandex.net/react/code/sp_1-large.png","__v":0},
+      {"_id":"643d69a5c3f7b9001cfa093d","name":"Флюоресцентная булка R2-D3","type":"bun","proteins":44,"fat":26,"carbohydrates":85,"calories":643,"price":988,"image":"https://code.s3.yandex.net/react/code/bun-01.png","image_mobile":"https://code.s3.yandex.net/react/code/bun-01-mobile.png","image_large":"https://code.s3.yandex.net/react/code/bun-01-large.png","__v":0},
+      {"_id":"643d69a5c3f7b9001cfa093d","name":"Флюоресцентная булка R2-D3","type":"bun","proteins":44,"fat":26,"carbohydrates":85,"calories":643,"price":988,"image":"https://code.s3.yandex.net/react/code/bun-01.png","image_mobile":"https://code.s3.yandex.net/react/code/bun-01-mobile.png","image_large":"https://code.s3.yandex.net/react/code/bun-01-large.png","__v":0}
+    ],
+    "_id": "6945357ba64177001b324198",
+    "owner": {
+      "name": "pyh-pyh@m.ru",
+      "email": "pyh-pyh@m.ru",
+      "createdAt": "2025-10-29T18:03:43.706Z",
+      "updatedAt": "2025-11-20T08:15:21.571Z"
+    },
+    "status": "done",
+    "name": "Био-марсианский люминесцентный краторный бургер",
+    "createdAt": "2025-12-19T11:22:35.400Z",
+    "updatedAt": "2025-12-19T11:22:35.636Z",
+    "number": 975530,
+    "price": 5780
+  }
+}

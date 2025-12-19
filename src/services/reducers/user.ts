@@ -3,7 +3,7 @@ import {editUser, getUser, loginUser, registerUser, logout} from '../thunks/user
 import {IUserLogin, IError} from "../../utils/types";
 import {IUserSlice} from '../../utils/types';
 
-const initialState: IUserSlice = {
+export const initialState: IUserSlice = {
   user: null,
   isAuthChecked: false,
   isLoading: false,

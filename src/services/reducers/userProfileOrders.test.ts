@@ -1,4 +1,4 @@
-import {userProfileOrdersReducer} from './userProfileOrders';
+import {userProfileOrdersReducer, initialState} from './userProfileOrders';
 import {wsProfileOrdersClose, wsProfileOrdersConnecting, wsProfileOrdersError, wsProfileOrdersMessage, wsProfileOrdersOpen} from "../actions/userProfileOrders";
 import {IOrderFeed, WebsocketStatus, IWsMessage} from '../../utils/types';
 
@@ -6,14 +6,6 @@ const orderFeed: IOrderFeed[] = [{ name: 'nyam-nyam', number: 1, ingredients: ['
 const wsMessage: IWsMessage  = {success: true, orders: orderFeed, total: 666, totalToday: 6};
 
 describe('userProfileOrders reducer', () => {
-  const initialState = {
-    orders: [],
-    total: 0,
-    totalToday: 0,
-    status: WebsocketStatus.OFFLINE,
-    error: '',
-  }
-
   it('orders -- wsProfileOrdersConnecting', function () {
     const state = userProfileOrdersReducer(initialState, wsProfileOrdersConnecting());
     expect(state.status).toEqual(WebsocketStatus.CONNECTING);

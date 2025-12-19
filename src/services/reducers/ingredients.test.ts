@@ -1,5 +1,5 @@
 import ingredientsSlice from './ingredients';
-import {getIngredients} from './ingredients';
+import {getIngredients, initialState} from './ingredients';
 import {IIngredient} from '../../utils/types';
 
 const ingredient1: IIngredient = {
@@ -18,13 +18,6 @@ const ingredient1: IIngredient = {
 };
 
 describe('ingredients reducer', () => {
-  const initialState = {
-    ingredients: [],
-    requested: false,
-    succeed: false,
-    failed: false
-  }
-
   it('should get ingredient - fulfilled', function () {
     const state = ingredientsSlice(initialState, {type: getIngredients.fulfilled.type, payload: {data: [ingredient1]}});
     expect(state).toEqual({...initialState, ingredients: [ingredient1], requested: false});

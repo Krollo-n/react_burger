@@ -3,7 +3,7 @@ import {restorePassword} from '../thunks/password';
 import {resetPassword} from '../thunks/password';
 import {IPasswordSlice} from '../../utils/types';
 
-const initialState: IPasswordSlice = {
+export const initialState: IPasswordSlice = {
   restorePasswordRequested: false,
   restorePasswordSucceed: false,
   restorePasswordFailed: false,

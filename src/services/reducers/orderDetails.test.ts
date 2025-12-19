@@ -1,20 +1,11 @@
 import orderDetailsSlice from './orderDetails';
-import {addOrder} from './orderDetails';
+import {addOrder, initialState} from './orderDetails';
 import {IError} from '../../utils/types';
 
 const orderData = {number: 666};
 const error: IError = {success: false, message: 'error'};
 
 describe('send order reducer', () => {
-  const initialState = {
-    order: null,
-    status: false,
-    error: null,
-    success:false,
-    failed: false,
-    requested: false
-  }
-
   it('should send order -- fulfilled', function () {
     const state = orderDetailsSlice(initialState, {type: addOrder.fulfilled.type, payload: orderData});
     expect(state).toEqual({...initialState, requested: false, success:true, order: orderData});

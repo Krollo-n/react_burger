@@ -38,8 +38,8 @@ const Modal: FC<IModalProps> = ({children, id, isOpen=true, onClose}) => {
 
   return createPortal(
     <ModalOverlay id={id} isOpen={isOpen}>
-      <div className={modalStyles.main}>
-        <CloseIcon type="primary" onClick={onClose} className={modalStyles.image} data-test-id='close_button'/>
+      <div className={modalStyles.main} data-test-id='close_button'>
+        <CloseIcon type="primary" onClick={onClose} className={modalStyles.image}/>
         {children}
       </div>
     </ModalOverlay>,

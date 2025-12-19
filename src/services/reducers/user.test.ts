@@ -1,4 +1,5 @@
 import userSlice from './user';
+import {initialState} from './user';
 import {registerUser, loginUser, getUser, editUser, logout} from '../thunks/user';
 import {IError} from '../../utils/types';
 
@@ -6,13 +7,6 @@ const userData = {email: 'pyh-pyh@m.ru', name: 'Pyh Pyh', password: 'qwerty' };
 const error: IError = {success: false, message: 'error'};
 
 describe('user reducer', () => {
-  const initialState = {
-    user: null,
-    isAuthChecked: false,
-    isLoading: false,
-    error: null
-  }
-
   it('should register user -- fulfilled', function () {
     const state = userSlice(initialState, {type: registerUser.fulfilled.type, payload: {user: userData}});
     expect(state).toEqual({...initialState, isAuthChecked: true, user: userData});

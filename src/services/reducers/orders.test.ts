@@ -1,4 +1,4 @@
-import {ordersReducer} from './orders';
+import {ordersReducer, initialState} from './orders';
 import {wsOrdersClose, wsOrdersConnecting, wsOrdersError, wsOrdersMessage, wsOrdersOpen} from "../actions/orders";
 import {IOrderFeed, WebsocketStatus, IOrdersStore, IWsMessage} from '../../utils/types';
 
@@ -6,14 +6,6 @@ const orderFeed: IOrderFeed[] = [{ name: 'nyam-nyam', number: 1, ingredients: ['
 const wsMessage: IWsMessage  = {success: true, orders: orderFeed, total: 666, totalToday: 6};
 
 describe('orders reducer', () => {
-  const initialState = {
-    orders: [],
-    total: 0,
-    totalToday: 0,
-    status: WebsocketStatus.OFFLINE,
-    connectionError: '',
-  }
-
   it('orders -- wsOrdersConnecting', function () {
     const state = ordersReducer(initialState, wsOrdersConnecting());
     expect(state.status).toEqual(WebsocketStatus.CONNECTING);
