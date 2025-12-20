@@ -4,7 +4,7 @@ import BurgerIngredients from '../burgerIngredients/burgerIngredients';
 import BurgerConstructor from '../burgerConstructor/burgerConstructor';
 
 const Main = () => {
-  const [ingredientCounter, setIngredientCounter] = useState<Map<string, number>>(new Map());
+  const [ingredientCounter, setIngredientCounter] = useState<Map<string, number>>(new Map<string, number>());
 
   return (
     <main>

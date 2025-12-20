@@ -27,7 +27,7 @@ const InfoBurgerIngredient: FC<IInfoBurgerIngredientProps> = ({ingredient, onOpe
   return (
     <Link to={`/ingredients/${ingredient._id}`}  state={{ background: location }}>
       <div ref={dragPreview} role="button" tabIndex={0} onClick={(e) => onOpen(e , ingredient)}>
-        <div ref={drag} className={`${infoBurgerIngredientStyles.info} ${isDrag && infoBurgerIngredientStyles.drag}`} >
+        <div ref={drag} data-test-id={`info_burger_ingredient_counter-${ingredient._id}`}  className={`${infoBurgerIngredientStyles.info} ${isDrag && infoBurgerIngredientStyles.drag}`} >
           {(counter && <Counter count={counter} size="default" />) ||null}
           <img src={ingredient?.image} alt={ingredient?.name}/>
           <div className={infoBurgerIngredientStyles.price}>

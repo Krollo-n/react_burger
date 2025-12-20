@@ -98,7 +98,7 @@ const BurgerIngredients: FC<IBurgerIngredientsProps> = ({ingredientCounter}) => 
             <h2 id='one' ref={bunRef} tab-ref="one" className={burgerIngredientsStyles.header}>
               Булки
             </h2>
-            <div className={burgerIngredientsStyles.ingredient}>
+            <div className={burgerIngredientsStyles.ingredient} data-test-id='ingredient-buns'>
               {
                 ingredients.filter(({type}) => type==='bun')
                 .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}
@@ -111,7 +111,7 @@ const BurgerIngredients: FC<IBurgerIngredientsProps> = ({ingredientCounter}) => 
             <h2 id='two' ref={saucesRef} tab-ref="two" className={burgerIngredientsStyles.header}>
               Соусы
             </h2>
-            <div className={burgerIngredientsStyles.ingredient}>
+            <div className={burgerIngredientsStyles.ingredient} data-test-id='ingredient-sauce'>
               {
                 ingredients.filter(({type}) => type==='sauce')
                 .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}
@@ -123,7 +123,7 @@ const BurgerIngredients: FC<IBurgerIngredientsProps> = ({ingredientCounter}) => 
             <h2 id='three' ref={mainsRef} tab-ref="three"  className={burgerIngredientsStyles.header}>
               Начинки
             </h2>
-            <div className={burgerIngredientsStyles.ingredient}>
+            <div className={burgerIngredientsStyles.ingredient} data-test-id='ingredient-main'>
               {
                 ingredients.filter(({type}) => type==='main')
                 .map((d) => (<InfoBurgerIngredient ingredient={d} key={d._id}/* _id={d._id}  key={d._id} name={d.name} price={d.price} image={d.image} */

@@ -10,7 +10,7 @@ export interface IUserProfileOrdersStore {
   error: string;
 }
 
-const initialState: IUserProfileOrdersStore = {
+export const initialState: IUserProfileOrdersStore = {
   orders: [],
   total: 0,
   totalToday: 0,

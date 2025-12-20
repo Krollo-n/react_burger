@@ -27,9 +27,9 @@ const OrderFeedCard = ({isRoutePage = false}) => {
   }, [number]);
 
   const ingredientsByIds = () => {
-	return ingredients.ingredients.filter(ingredient => {return order.ingredients.includes(ingredient._id)})
+	return ingredients.ingredients.filter(ingredient => {return order?.ingredients.includes(ingredient._id)})
 	   .map(x => ({
-		 ingredient: x, count: x.type !== 'bun'?order.ingredients.filter(y => {return y === x._id}).length: 2})
+		 ingredient: x, count: x.type !== 'bun'?order?.ingredients.filter(y => {return y === x._id}).length: 2})
 		) as {ingredient: IIngredient; count: number;}[];
   }
 

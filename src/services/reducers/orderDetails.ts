@@ -5,7 +5,7 @@ import {IIngredientKey, IOrder, IError} from '../../utils/types';
 
 export const addOrder = createAsyncThunk(
   'orderDetails/addOrder',
-   async ({ingredients, bun, token}: { ingredients: IIngredientKey[], bun: IIngredientKey, token: string }) => {
+   async ({ingredients, bun, token}: { ingredients: IIngredientKey[], bun: IIngredientKey, token: string|null }) => {
     let ingredientIds = ingredients.map(el => el._id).concat([bun?._id, bun?._id])
     return await request(`${API.endpoints.orders}`, {
       method: 'POST',
@@ -24,7 +24,7 @@ interface IOrderDetailsSlice {
   requested: boolean;
 }
 
-const initialState: IOrderDetailsSlice = {
+export const initialState: IOrderDetailsSlice = {
   order: null,
   status: false,
   error: null,

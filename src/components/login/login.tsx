@@ -34,7 +34,7 @@ export const LoginPage = () => {
                     name='password'
                     onChange={change}
                     value={form.password}/>
-                <Button className={'button button_size_medium button_type_primary'} htmlType={'submit'}>
+                <Button className={'button button_size_medium button_type_primary'} htmlType={'submit'} data-test-id='login_button'>
                     <span className={'text text_type_main-default'}>
                         Войти
                     </span>

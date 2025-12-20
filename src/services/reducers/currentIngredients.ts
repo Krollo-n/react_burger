@@ -1,12 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {IIngredientKey} from '../../utils/types';
+import {ICurrentIngredientsSlice} from '../../utils/types';
 
-type ICurrentIngredientsSlice = {
-  bun: null | IIngredientKey;
-  ingredients: IIngredientKey[];
-};
-
-const initialState: ICurrentIngredientsSlice = {
+export const initialState: ICurrentIngredientsSlice = {
   bun: null,
   ingredients: []
 };
@@ -15,7 +10,7 @@ const currentIngredientsSlice = createSlice({
   name: 'currentIngredients',
   initialState,
   reducers: {
-    addIngeredient:  (state, action) => {
+    addIngredient:  (state, action) => {
       const {key, ingredient} = action.payload;
       const data = {...ingredient, key};
 
@@ -42,6 +37,6 @@ const currentIngredientsSlice = createSlice({
   },
 });
 
-export const {addIngeredient, deleteCurrentIngredient, sortingIngredient, reset} = currentIngredientsSlice.actions;
+export const {addIngredient, deleteCurrentIngredient, sortingIngredient, reset} = currentIngredientsSlice.actions;
 
 export default currentIngredientsSlice.reducer;

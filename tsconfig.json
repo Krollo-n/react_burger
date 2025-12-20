@@ -19,7 +19,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "strictNullChecks": false
+    //"strictNullChecks": true,
+    //"strictPropertyInitialization":true
+    "types": ["cypress", "node"]
   },
   "include": [
     "src"

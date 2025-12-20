@@ -1,17 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {restorePassword} from '../thunks/password';
 import {resetPassword} from '../thunks/password';
-  
-interface IPasswordSlice {
-  restorePasswordRequested: boolean,
-  restorePasswordSucceed: boolean,
-  restorePasswordFailed: boolean,
-  resetPasswordRequested: boolean,
-  resetPasswordSucceed: boolean,
-  resetPasswordFailed: boolean
-}
+import {IPasswordSlice} from '../../utils/types';
 
-const initialState: IPasswordSlice = {
+export const initialState: IPasswordSlice = {
   restorePasswordRequested: false,
   restorePasswordSucceed: false,
   restorePasswordFailed: false,
